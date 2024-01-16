@@ -17,6 +17,14 @@ import java.util.Random;
 public class PostService {
     private List<Post> posts = new ArrayList<>();
     public List<Post> getPosts(){ return this.posts;}
+    public List<Post> getPostsByCategory(String category){
+        List<Post> filteredList = new ArrayList<>();
+        for(Post post : posts){
+            if(post.getCategoria().equals(category)){
+                filteredList.add(post);
+            }
+        }
+        return filteredList;}
     public Post save(Post body){
         Random rm = new Random();
         body.setId(rm.nextInt(1,100));

@@ -14,7 +14,16 @@ public class PostsController {
     @Autowired
     private PostService postService;
     @GetMapping
-    public List<Post> getPosts(){return postService.getPosts();}
+    public List<Post> getPosts(@RequestParam(required = false) String category){
+        if(category != null){
+            return postService.getPostsByCategory(category);
+        } else {
+            return postService.getPosts();
+
+        }
+    }
+//    @GetMapping
+//    public List<Post> getPosts(){return postService.getPosts();}
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Post savepost(@RequestBody Post body){return postService.save(body);}
