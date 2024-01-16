@@ -18,4 +18,12 @@ public class PostsController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Post savepost(@RequestBody Post body){return postService.save(body);}
+    @GetMapping("/{id}")
+    public Post findById(@PathVariable int id){return postService.findById(id);}
+    @PutMapping("/{id}")
+    public Post findIdUpdate(@PathVariable int id, @RequestBody Post body){
+        return this.postService.findByIdAndUpdate(id, body);
+    }
+    @DeleteMapping("/{id}")
+    public void findIdDelete(@PathVariable int id){ this.postService.findByIdAndDelete(id);}
 }
